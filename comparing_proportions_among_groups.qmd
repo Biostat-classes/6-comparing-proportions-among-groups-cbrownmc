@@ -1,6 +1,6 @@
 ---
 title: "Compare proportions among groups"
-author: "JSG"
+author: "Chinyere"
 format:
   html:
     embed-resources: true
@@ -72,7 +72,14 @@ Dong this with summarized data is actually harder
 ```{r}
 aggregate(Number~Oxygen, everest, sum)$Number
 chisq.test(aggregate(Number~Oxygen, everest, sum)$Number) 
+binom.test(table(everest_expand$Oxygen))
+
 ```
+```{r}
+binom.test(table(everest_expand$Oxygen), p=.1)
+
+```
+
 
 But this is better!
 
@@ -254,14 +261,21 @@ We want to again test if heart attacks occur equally across genders.
 
 -   What if we know that males actually make up 50.8% of the population?
 
+Heart attacks are not equally distributed because, they occur more in males than expected.
+
 #### 2
 
 Still using the heart attack data, is survival independent of gender?
+
+Survival is independent of gender.
 
 #### 3
 
 For people that have a heart attack before they turn 30, is survival
 independent of gender?
+
+No strong evidence that survival depends on gender under 30
+but results are uncertain due to small sample size
 
 ### Dolphins
 
@@ -285,6 +299,8 @@ http://www.statsci.org/data/general/dolpacti.html
 Is travelling independent of time of day? You’ll need to consider
 traveling vs not traveling due to different number of groups observed in
 each period. Carry out post-hoc tests if needed.
+
+Dolphin behaviors were grouped into traveling vs. not traveling to test whether traveling depends on time of day. A chi-square test of independence showed that traveling is not independent of time of day, indicating differences in behavior across periods. Post-hoc tests identified which specific times had significantly higher or lower traveling activity than expected.
 
 ### Smoking
 
